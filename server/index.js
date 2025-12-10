@@ -17,7 +17,7 @@ const replicate = new Replicate({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-const TEMPLATE_IMAGE_URL = "https://replicate.delivery/pbxt/K2.../template.jpg"; 
+const TEMPLATE_IMAGE_URL = "piclumen-1744033346326.png"; 
 
 const bufferToDataURI = (buffer, mimetype) => {
   return `data:${mimetype};base64,${buffer.toString('base64')}`;
