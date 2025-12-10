@@ -1,19 +1,15 @@
 # Architecture Diagram 
 
-+---------------------+        +----------------------+
-|   User (Browser)    |        |   Replicate Cloud    |
-|                     |        |                      |
-|  [ React Frontend ] |        |  [ AI Model Host ]   |
-+----------+----------+        +-----------+----------+
-           |                               ^
-           | 1. Upload Photo               | 3. Send Request
-           v                               |    (Image + Prompt)
-+---------------------+                    |
-|   Node.js Server    |--------------------+
-|                     |
-|  [ API Controller ] |<-------------------+
-|  [ Multer Upload ]  |    4. Return URL
-+---------------------+       (Generated Image)
+graph TD
+    User((User)) -->|Uploads Photo| Frontend[React Frontend\n(Vercel/Local)]
+    Frontend -->|POST /generate| Backend[Node.js API\n(Express)]
+    Backend -->|Auth & Validation| Backend
+    Backend -->|Request Prediction| Replicate[Replicate Cloud API\n(InstantID Model)]
+    Replicate -->|Process: Face ID + Style Transfer| GPU[(GPU Cluster)]
+    GPU -->|Return Image URL| Replicate
+    Replicate -->|JSON Response| Backend
+    Backend -->|Image URL| Frontend
+    Frontend -->|Display Avatar| User
 
 
 
