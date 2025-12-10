@@ -1,3 +1,22 @@
+# Architecture Diagram 
+
++---------------------+        +----------------------+
+|   User (Browser)    |        |   Replicate Cloud    |
+|                     |        |                      |
+|  [ React Frontend ] |        |  [ AI Model Host ]   |
++----------+----------+        +-----------+----------+
+           |                               ^
+           | 1. Upload Photo               | 3. Send Request
+           v                               |    (Image + Prompt)
++---------------------+                    |
+|   Node.js Server    |--------------------+
+|                     |
+|  [ API Controller ] |<-------------------+
+|  [ Multer Upload ]  |    4. Return URL
++---------------------+       (Generated Image)
+
+
+
 # Engineering Notes
 
 ## 1. Model Choice: InstantID via Replicate
