@@ -31,20 +31,21 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
     const imageURI = bufferToDataURI(req.file.buffer, req.file.mimetype);
 
     const output = await replicate.run(
-      "zsxkib/instant-id:2e4785a4d80dadf580077b2244c8d7c05d8e3faac04a04c02d8e099dd2876789",
-      {
-        input: {
-          image: imageURI,
-          pose_image: TEMPLATE_IMAGE_URL, 
-          prompt: "3d style, disney pixar cartoon style, cute girl, vibrant colors, 4k",
-          negative_prompt: "photo, realistic, text, watermark, ugly, low quality",
-          style_strength: 0.8,
-          identity_strength: 0.8,
-          num_inference_steps: 30,
-          guidance_scale: 5
-        }
-      }
-    );
+  "zsxkib/instant-id",
+  {
+    input: {
+      image: imageURI,
+      pose_image: "https://yourdomain.com/piclumen-1744033346326.png",
+      prompt: "3d style, disney pixar cartoon style, cute girl, vibrant colors, 4k",
+      negative_prompt: "photo, realistic, text, watermark, ugly, low quality",
+      style_strength: 0.8,
+      identity_strength: 0.8,
+      num_inference_steps: 30,
+      guidance_scale: 5
+    }
+  }
+);
+
     res.json({ success: true, imageUrl: output[0] });
   } catch (error) {
     console.error(error);
