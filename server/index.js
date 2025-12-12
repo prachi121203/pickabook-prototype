@@ -30,12 +30,12 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
     console.log('Generating...');
     const imageURI = bufferToDataURI(req.file.buffer, req.file.mimetype);
 
-    const output = await replicate.run(
+   const output = await replicate.run(
   "zsxkib/instant-id",
   {
     input: {
       image: imageURI,
-      pose_image: "https://yourdomain.com/piclumen-1744033346326.png",
+      pose_image: TEMPLATE_IMAGE_URL,
       prompt: "3d style, disney pixar cartoon style, cute girl, vibrant colors, 4k",
       negative_prompt: "photo, realistic, text, watermark, ugly, low quality",
       style_strength: 0.8,
